@@ -1,15 +1,14 @@
 package com.pluralsight;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 
-public class PayrollFIleCalculator {
+public class PayrollFileCalculator {
     public static void main(String[] args) {
         try {
             FileReader fileReader = new FileReader("employees.csv");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
+            bufferedReader.readLine();
             String csvLine;
             while ((csvLine = bufferedReader.readLine()) != null) {
                 String[] empData = csvLine.split("\\|");
@@ -19,7 +18,7 @@ public class PayrollFIleCalculator {
                 double payRate = Double.parseDouble(empData[3]);
 
                 Employee employee = new Employee(employeeID, name, hoursWorked, payRate);
-                System.out.printf("%d, %s, %.2f", employee.getEmployeeID(), employee.getName(), employee.getGrossPay());
+                System.out.printf("%d, %s, %.2f%n", employee.getEmployeeID(), employee.getName(), employee.getGrossPay());
             }
             bufferedReader.close();
         }
